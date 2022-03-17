@@ -1,0 +1,6 @@
+{
+	"appId": "io.framework7.colloghhealthv",
+	"appName": "Capacitor iHealth Plugin",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}
