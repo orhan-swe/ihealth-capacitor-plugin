@@ -1,8 +1,8 @@
 import { CapacitorConfig } from "@capacitor/cli";
 
 const config: CapacitorConfig = {
-  appId: "io.ionic.cap.plugin",
-  appName: "Capacitor Plugin Tutorial",
+  appId: "io.framework7.colloghhealthv",
+  appName: "Capacitor iHealth Plugin",
   webDir: "build",
   bundledWebRuntime: false,
 };

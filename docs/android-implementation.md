@@ -13,7 +13,7 @@ Next, right-click the **ScreenOrientation** package and add a new Java file by s
 Copy the following code into `ScreenOrientationPlugin.java`:
 
 ```java
-package io.ionic.cap.plugin.plugins.ScreenOrientation;
+package io.framework7.colloghhealthv.plugins.ScreenOrientation;
 
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -43,11 +43,11 @@ public class ScreenOrientationPlugin extends Plugin {
 Register the plugin class within the project’s MainActivity to bridge between Java and JavaScript. Open `MainActivity.java` and add an `onCreate()` method where we can register the plugin:
 
 ```java
-package io.ionic.cap.plugin;
+package io.framework7.colloghhealthv;
 
 import android.os.Bundle;
 import com.getcapacitor.BridgeActivity;
-import io.ionic.cap.plugin.plugins.ScreenOrientation.ScreenOrientationPlugin;
+import io.framework7.colloghhealthv.plugins.ScreenOrientation.ScreenOrientationPlugin;
 
 public class MainActivity extends BridgeActivity {
    @Override
@@ -63,7 +63,7 @@ public class MainActivity extends BridgeActivity {
 Like iOS, we will tackle getting the current screen orientation first. Open `ScreenOrientation.java` to set up the class and write a method to get the current orientation:
 
 ```java
-package io.ionic.cap.plugin.plugins.ScreenOrientation;
+package io.framework7.colloghhealthv.plugins.ScreenOrientation;
 
 import android.view.Surface;
 import androidx.appcompat.app.AppCompatActivity;
@@ -98,7 +98,7 @@ public class ScreenOrientation {
 Next, wire up the `orientation` method in `ScreenOrientationPlugin.java` to call the implementation class’s method:
 
 ```java
-package io.ionic.cap.plugins.ScreenOrientation;
+package io.framework7.colloghhealthvs.ScreenOrientation;
 
 import com.getcapacitor.JSObject;
 /* Remaining imports omitted for brevity */
