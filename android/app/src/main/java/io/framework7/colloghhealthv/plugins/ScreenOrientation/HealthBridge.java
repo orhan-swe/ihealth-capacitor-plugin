@@ -32,8 +32,9 @@ public class HealthBridge {
                 // what do we do with device??
                 JSObject ret = new JSObject();
                 ret.put("event", "scanDevice");
-                ret.put("data", deviceType);
+                ret.put("type", deviceType);
                 ret.put("mac", mac);
+                ret.put("status", "");
                 call.resolve(ret);
             }
             @Override
@@ -41,8 +42,9 @@ public class HealthBridge {
                     status, int errorId) {
                 JSObject ret = new JSObject();
                 ret.put("event", "deviceConnectionStateChange");
-                ret.put("data", status);
+                ret.put("type", deviceType);
                 ret.put("mac", mac);
+                ret.put("status", status);
                 call.resolve(ret);
 
                // if (status == iHealthDevicesManager.DEVICE_STATE_CONNECTED) {
@@ -52,8 +54,10 @@ public class HealthBridge {
             {
                 JSObject ret = new JSObject();
                 ret.put("event", "deviceNotify");
-                ret.put("data", action);
+                ret.put("type", deviceType);
                 ret.put("mac", mac);
+                ret.put("action", action);
+                ret.put("message", message);
                 call.resolve(ret);
 //                BpProfile.ACTION_GET_CYCLE_MEASURE_ABPM
 
@@ -63,11 +67,18 @@ public class HealthBridge {
             public void onScanError(String reason, long latency) {
                 Log.e(TAG, reason);
                 Log.e(TAG, "please wait for " + latency + " ms");
+                JSObject ret = new JSObject();
+                ret.put("event", "scanError");
+                ret.put("error", reason);
+                call.resolve(ret);
             }
 
             @Override
             public void onScanFinish() {
                 super.onScanFinish();
+                JSObject ret = new JSObject();
+                ret.put("event", "scanFinish");
+                call.resolve(ret);
             }
         };
         callbackId = iHealthDevicesManager.getInstance().registerClientCallback(c1);

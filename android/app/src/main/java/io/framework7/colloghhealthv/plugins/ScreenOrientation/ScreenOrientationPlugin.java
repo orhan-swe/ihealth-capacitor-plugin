@@ -28,8 +28,7 @@ public class ScreenOrientationPlugin extends Plugin {
     @PluginMethod()
     public void connectDevice(PluginCall call) {
         String mac = call.getString("mac");
-        String type = call.getString("type");
-        iHealthDevicesManager.getInstance().connectDevice("", mac, type);
+        iHealthDevicesManager.getInstance().connectDevice("", mac, "KN-550BT");
     }
     @PluginMethod(returnType = PluginMethod.RETURN_CALLBACK)
     public void registerHealthCallbacks(PluginCall call) {
@@ -49,6 +48,10 @@ public class ScreenOrientationPlugin extends Plugin {
     public void getOfflineData(PluginCall call) {
         String mac = call.getString("mac");
         Bp550BTControl c = iHealthDevicesManager.getInstance().getBp550BTControl(mac);
+        if (c == null) {
+            call.reject("Error could not get data!");
+            return;
+        }
         c.getOfflineData();
         // the data will come in the callback!
         call.resolve();
@@ -57,7 +60,12 @@ public class ScreenOrientationPlugin extends Plugin {
     public void getOfflineNum(PluginCall call) {
         String mac = call.getString("mac");
         Bp550BTControl c = iHealthDevicesManager.getInstance().getBp550BTControl(mac);
+        if (c == null) {
+            call.reject("Error could not get data!");
+            return;
+        }
         c.getOfflineNum();
+        c.init();
         // the data will come in the callback!
         call.resolve();
     }

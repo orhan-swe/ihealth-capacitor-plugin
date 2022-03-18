@@ -5,13 +5,13 @@ export interface ScreenOrientationPlugin {
 
   // will register callbacks and we need to react on each callback somehow
   registerHealthCallbacks(callback: HealthCallback): Promise<CallbackID>;
-  clearHealthCallbacks(id: CallbackID): Promise<void>;
+  clearHealthCallbacks(opts: {id: CallbackID}): Promise<void>;
   // start scanning, nothing to do
   startScanning(): Promise<void>;
   // read values , nothing to do (values will be coming from the callback)
-  getOfflineData(mac: String): Promise<void>;
-  getOfflineNum(mac: String): Promise<void>;
-  connectDevice(mac: String, type: String): Promise<void>;
+  getOfflineData(opts: {mac: String}): Promise<void>;
+  getOfflineNum(opts: {mac: String}): Promise<void>;
+  connectDevice(opts: {mac: String}): Promise<void>;
 
   /**
    * Returns the screen's current orientation.
