@@ -2,6 +2,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.framework7.colloghhealthv">
 
+    <!-- Permissions -->
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- Internet communication and detect / manage Wi-Fi state -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"
+        />
+    <!-- Bluetooth permission for communicating with iHealth devices -->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <!-- Bluetooth -->
+    <!--    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />-->
+    <!--    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />-->
+    <!--    <uses-permission android:name="android.permission.BLUETOOTH" android:maxSdkVersion="30" />-->
+    <!--    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" android:maxSdkVersion="30" />-->
+    <!--    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" tools:targetApi="s" />-->
+    <!--    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT"  tools:targetApi="s" />-->
+
+    <uses-feature android:name="android.hardware.bluetooth_le" android:required="false" />
+
+    <!-- Permission for writing on device memory -->
+    <!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+
+    <!-- Permission for locating user device in order to search beacons -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <!-- Permission for iHealth BG1 device (which connect with phone by headphone jack) -->
+    <!--    <uses-permission android:name="android.permission.RECORD_AUDIO" />-->
+    <!--    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />-->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +45,7 @@
 
         <activity
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|locale|smallestScreenSize|screenLayout|uiMode"
-            android:name="io.framework7.colloghhealthv.MainActivity"
+            android:name="io.framework7.colloghhealthv.plugins.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBarLaunch"
             android:launchMode="singleTask">
@@ -33,9 +66,11 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths"></meta-data>
         </provider>
+        <service
+            android:name="com.ido.ble.bluetooth.DeviceConnectService" android:exported="false" />
+        <service
+            android:name="com.ido.ble.dfu.DFUService" android:enabled="true" android:exported="false" />
     </application>
 
-    <!-- Permissions -->
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>
